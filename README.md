@@ -4,7 +4,7 @@ ESP8266 Controlled Grow Box with external web application for monitoring paramet
 ## Introduction
 Growbox named 'Worgbox'. What do I mean? 'Worg' and 'box'! 'Worg' in parallel universe sounds like 'Grow'. 
 No need to explain you how we can travel there :]
-Main idea I want to make a very compact and controlled box for growing something small in little area and possible stealthy.
+Main idea I want to make a very compact and controlled box for growing something small in little area.
 
 >It's second version of controller. First version (repo [Worgbox-Proto](https://github.com/GrowBoxer/Worgbox-Proto)) based on Arduino + ESP8266 ESP-01.
 >Works, with questions, repo still (and forever?) without code and other stuff. Migrating here.
@@ -56,13 +56,13 @@ Usual request looks like http://your.controller.ip.address/command/option/value
 List of /command/option/value
 
 - [/get/json](#) - return JSON string with all current system state data (sensors, light mode, time, etc.)
-- [/set/light-mode/0](#) — set light mode to 24/0 (hours of day/night) (always day)
-- [/set/light-mode/1](#) — set light mode to 18/6 
-- [/set/light-mode/2](#) — set light mode to 12/12 
-- [/set/light-mode/3](#) — set light mode to 0/24 (always night)
-- [/set/fans-day-mode/90](#) — set fans speed to 90% of max when day (min 50% max 100%)
-- [/set/fans-night-mode/30](#) — set fans speed to 30% of max when night (min 30% max 100%)
-- [/set/night-starts/18](#) — set time when night starts
+- [/set/lm/value=0](#) — set light mode to 24/0 (hours of light on/light off) (always day)
+- [/set/lm/value=1](#) — set light mode to 18/6 
+- [/set/lm/value=2](#) — set light mode to 12/12 
+- [/set/lm/value=3](#) — set light mode to 0/24 (always night)
+- [/set/fds/value=0.9](#) — set fans speed to 90% of max when day (set in config min)
+- [/set/fns/value=0.086](#) — set fans speed to 30% of max when night (set in config min)
+- [/set/ns/value=11](#) — set time when night starts
 
 ## Files
 
@@ -91,25 +91,27 @@ List of /command/option/value
 - data.json — example of data recieved from controller;
 - data.csv — example of data sended to thingspeak;
 
-### TO DO Files
+## TO DO 
+
+### Files
 - check DWG for actual changes
 - need back door fan shift
 - need solid plywood base for light compartment door
 
-### TO DO Construction
+### Construction
 - use bigger holles for wires (up to 5 mm diameter)
 - separate high voltage and low voltage compartments;
 
 
-### TO DO Hardware
+### Hardware
 - make PCB for complete product;
 - setup temeprature sensor to the LED radiators;
 - read white wire data from the fans (for RPM analyze);
 
-### TO DO Software
+### Software
 - analyze fans RPM;
 
-## TO DO HTTP Commands
+## HTTP Commands
 - [/set/light-fans-day-mode/90](#)
 - [/set/box-fans-day-mode/90](#)
 - [/set/light-fans-night-mode/0](#)
@@ -122,4 +124,5 @@ List of /command/option/value
 ### Ideas Construction
 - transparent acrylic window for revision of main area
 - one-point lock for main door (now have 4-point locks) — construction should be strong
+- stepper drive for lock
 - put screws deeper (into first plywood layer)
